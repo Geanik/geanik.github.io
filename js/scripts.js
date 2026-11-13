@@ -61,9 +61,14 @@
             $(this).addClass('vtimeline-content').wrap('<div class="vtimeline-point"><div class="vtimeline-block"></div></div>');
         });
 
-        // Add icons to each block
+        // Add icons to each block, using the company logo if one is set
         $this.find('.vtimeline-point').each(function () {
-            $(this).prepend('<div class="vtimeline-icon"><i class="fas fa-map-marker-alt"></i></div>');
+            var logo = $(this).find('.vtimeline-content').data('logo');
+            if (logo) {
+                $(this).prepend('<div class="vtimeline-icon vtimeline-logo"><img src="' + logo + '" alt=""></div>');
+            } else {
+                $(this).prepend('<div class="vtimeline-icon"><i class="fas fa-map-marker-alt"></i></div>');
+            }
         });
 
         // Add dates to the timeline if exists
